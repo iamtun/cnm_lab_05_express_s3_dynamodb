@@ -9,7 +9,11 @@
     <body>
         <main>
             <section class="form_add_product">
-                <form action="/products" method="post">
+                <form
+                    action="/products"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
                     <div class="input_item">
                         <label for="product_name">Name:</label>
                         <input type="text" name="product_name" />
@@ -23,8 +27,8 @@
                         <input type="text" name="product_quantity" />
                     </div>
                     <div class="input_item">
-                        <label for="product_name">Image:</label>
-                        <input type="file" name="product_image" />
+                        <label for="product_image">Image:</label>
+                        <input type="file" name="file" />
                     </div>
 
                     <button>Add</button>
