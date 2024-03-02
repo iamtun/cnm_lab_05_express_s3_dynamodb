@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="content">
+        <table>
+            <caption>Danh sách các môn học</caption>
+
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Loại Sản Phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Hình ảnh</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% products.forEach(item => { %>
+                    <tr>
+                        <td><%= item.id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.product_type %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.image %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
