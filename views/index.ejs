@@ -1,38 +1,69 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-    <div class="content">
-        <table>
-            <caption>Danh sách các môn học</caption>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+        <main>
+            <section class="form_add_product">
+                <form action="/products" method="post">
+                    <div class="input_item">
+                        <label for="product_name">Name:</label>
+                        <input type="text" name="product_name" />
+                    </div>
+                    <div class="input_item">
+                        <label for="product_type">Type:</label>
+                        <input type="text" name="product_type" />
+                    </div>
+                    <div class="input_item">
+                        <label for="product_quantity">Quantity:</label>
+                        <input type="text" name="product_quantity" />
+                    </div>
+                    <div class="input_item">
+                        <label for="product_name">Image:</label>
+                        <input type="file" name="product_image" />
+                    </div>
 
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Loại Sản Phẩm</th>
-                    <th>Số lượng</th>
-                    <th>Hình ảnh</th>
-                </tr>
-            </thead>
+                    <button>Add</button>
+                </form>
+            </section>
+            <section class="content">
+                <table>
+                    <caption>
+                        Danh sách các môn học
+                    </caption>
 
-            <tbody>
-                <% products.forEach(item => { %>
-                    <tr>
-                        <td><%= item.id %></td>
-                        <td><%= item.name %></td>
-                        <td><%= item.product_type %></td>
-                        <td><%= item.quantity %></td>
-                        <td><%= item.image %></td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
-    </div>
-</body>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Loại Sản Phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Hình ảnh</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% products.forEach(item => { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.product_name %></td>
+                            <td><%= item.product_type %></td>
+                            <td><%= item.product_quantity %></td>
+                            <td>
+                                <img
+                                    src="<%= item.product_image %>"
+                                    alt="img"
+                                />
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </body>
 </html>
