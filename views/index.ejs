@@ -35,11 +35,12 @@
                 </form>
             </section>
             <section class="content">
+                <button id="btn_delete">Delete</button>
+
                 <table>
                     <caption>
                         Danh sách sản phẩm
                     </caption>
-
                     <thead>
                         <tr>
                             <th>STT</th>
@@ -47,6 +48,7 @@
                             <th>Loại Sản Phẩm</th>
                             <th>Số lượng</th>
                             <th>Hình ảnh</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -63,11 +65,48 @@
                                     alt="img"
                                 />
                             </td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    value="<%= item.id %>"
+                                    name="check_to_delete"
+                                />
+                            </td>
                         </tr>
                         <% }); %>
                     </tbody>
                 </table>
             </section>
         </main>
+
+        <script>
+            const btnDelete = document.getElementById('btn_delete');
+            btnDelete.onclick = () => {
+                const ids = Array.prototype.slice
+                    .call(
+                        document.querySelectorAll(
+                            "[name='check_to_delete']:checked",
+                        ),
+                        0,
+                    )
+                    .map(function (v) {
+                        return v.value;
+                    });
+
+                fetch('/products', {
+                    method: 'DELETE',
+                    body: JSON.stringify(ids),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(() => {
+                        window.location.reload();
+                    })
+                    .catch((err) => {
+                        window.location.reload();
+                    });
+            };
+        </script>
     </body>
 </html>

@@ -85,6 +85,34 @@ app.post('/products', upload.single('file'), (req, res) => {
     });
 });
 
+app.delete('/products', (req, res) => {
+    const ids = req.body;
+
+    if (ids.length > 0) {
+        const deleteRequests = ids.map((id) => ({
+            DeleteRequest: {
+                Key: {
+                    id,
+                },
+            },
+        }));
+
+        const params = {
+            RequestItems: {
+                [TABLE_NAME]: deleteRequests,
+            },
+        };
+
+        docClient.batchWrite(params, (err, data) => {
+            if (err) {
+                return res.send({ error: err });
+            } else {
+                return res.send({ status: 200, message: 'ok' });
+            }
+        });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
