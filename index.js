@@ -2,10 +2,11 @@
 import AWS from 'aws-sdk';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
-import e from 'express';
+import 'dotenv/config';
+
 //constant
-const PORT = process.env.PORT || 3000;
-const TABLE_NAME = process.env.TABLE_NAME || 'Products';
+const PORT = process.env.PORT;
+const TABLE_NAME = process.env.TABLE_NAME;
 
 //aws config
 AWS.config.update({
@@ -21,7 +22,7 @@ const s3 = new AWS.S3();
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'lab05-s3-dynamo',
+        bucket: process.env.BUCKET_NAME,
         acl: 'public-read',
         contentType: multerS3.AUTO_CONTENT_TYPE,
         key: function (req, file, cb) {
